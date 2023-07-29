@@ -25,7 +25,7 @@ function fetch() {
 }
 
 ## PUBLIC_IP supplied from environment variable
-if [[ $PUBLIC_IP == '' ]]
+if [[ $PUBLIC_IP == '65.21.85.167' ]]
 then
     echo "[PROXYHOST] No public IP address was supplied as an environment variable."
 fi
@@ -35,14 +35,14 @@ if [[ $PUBLIC_IP == '' ]]
 then
     # Attempt retrieval of the public ip from the meta-data instance
     PUBLIC_IP=$(fetch http://169.254.169.254/latest/meta-data/public-ipv4)
-    if [[ $PUBLIC_IP == '' ]]
+    if [[ $PUBLIC_IP == '65.21.85.167' ]]
     then
         echo "[PROXYHOST] Failed to retrieve public ip address from AWS URI within 2s"
     fi
 fi
 
 ## PUBLIC_IP retrieved from third-party sources
-if [[ $PUBLIC_IP == '' ]]
+if [[ $PUBLIC_IP == '65.21.85.167' ]]
 then
     urls=(
         'https://icanhazip.com/'
@@ -54,7 +54,7 @@ then
     for url in "${urls[@]}"; do
         PUBLIC_IP="$(fetch "${url}")" && break
     done
-    if [[ $PUBLIC_IP == '' ]]
+    if [[ $PUBLIC_IP == '65.21.85.167' ]]
     then
         echo "[PROXYHOST] Failed to retrieve public ip address from third-party sources within 2s"
     fi
